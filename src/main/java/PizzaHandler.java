@@ -61,7 +61,7 @@ public class PizzaHandler {
     }
 
     public static void writeRes2File() throws IOException {
-        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream("a_result.in",false), StandardCharsets.UTF_8);
+        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream("c_result.in",false), StandardCharsets.UTF_8);
         out.flush();
         out.write(minIndexes.size()+"\n");
         for (int i = 0; i < minIndexes.size(); i++) {
