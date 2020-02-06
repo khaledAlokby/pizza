@@ -16,15 +16,17 @@ public class PizzaHandler {
     public static List minIndexes;
 
     public static void optemizeSlices(){
-        upCounting();
-        downCounting();
+        int limit = upCounting();
+        for (int i = limit; i < pizzas.length; i++) {
+            downCounting(i);
+        }
         write2File();
     }
 
-    private static void downCounting() {
+    private static void downCounting(int highestIndex) {
         List<Integer> indexes = new ArrayList<>();
         int diff = Maximum;
-        for (int i = pizzas.length-1; i >= 0 ; i--) {
+        for (int i = highestIndex; i >= 0 ; i--) {
             if (diff < pizzas[i])
                 continue;
             indexes.add(i);
@@ -37,10 +39,11 @@ public class PizzaHandler {
         }
     }
 
-    private static void upCounting() {
+    private static int upCounting() {
         List<Integer> indexes = new ArrayList<>();
         int diff = Maximum;
-        for (int i = 0; i < pizzas.length; i++) {
+        int i = 0;
+        for (; i < pizzas.length; i++) {
             if (diff < pizzas[i])
                 break;
             indexes.add(i);
@@ -48,6 +51,7 @@ public class PizzaHandler {
         }
         minDiff = diff;
         minIndexes = indexes;
+        return i;
     }
 
     private static void write2File() {
@@ -61,7 +65,7 @@ public class PizzaHandler {
     }
 
     public static void writeRes2File() throws IOException {
-        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream("c_result.in",false), StandardCharsets.UTF_8);
+        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream("e_result.in",false), StandardCharsets.UTF_8);
         out.flush();
         out.write(minIndexes.size()+"\n");
         for (int i = 0; i < minIndexes.size(); i++) {

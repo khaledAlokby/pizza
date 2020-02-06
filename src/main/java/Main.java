@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        URL url = Main.class.getResource("c_medium.in");
+        URL url = Main.class.getResource("e_also_big.in");
         File file = new File(url.getPath());
         BufferedReader br = null;
         try {
